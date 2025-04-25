@@ -26,3 +26,7 @@ Route::post('/register', [FormController::class, 'register'])->name('register');
 Route::get('/dashboard', [PageController::class, 'dashboard'])->middleware(validUser::class)->name('dashboard');
 
 Route::get('/logout', [FormController::class, 'logout'])->name('logout');
+
+Route::get('/categories', [PageController::class, 'categories'])->name('categories');
+
+Route::get('/products', [PageController::class, 'products'])->name('products');
