@@ -25,4 +25,8 @@ class PageController extends Controller
     public function products(){
         return view('products');
     }
+
+    public function reports(){
+        return view('reports');
+    }
 }

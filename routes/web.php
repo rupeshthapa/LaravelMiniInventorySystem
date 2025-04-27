@@ -30,3 +30,5 @@ Route::get('/logout', [FormController::class, 'logout'])->name('logout');
 Route::get('/categories', [PageController::class, 'categories'])->name('categories');
 
 Route::get('/products', [PageController::class, 'products'])->name('products');
+
+Route::get('/reports', [PageController::class, 'reports'])->name('reports');

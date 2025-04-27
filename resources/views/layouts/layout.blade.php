@@ -17,10 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a href="#" class="nav-link" aria-current="page">Dashboard</a>
+                    <a href="{{ route('dashboard') }}" class="nav-link" aria-current="page">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Products</a>
+                    <a href="{{ route('products') }}" class="nav-link">Products</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
@@ -28,10 +28,12 @@
                         <li><a href="#" class="dropdown-item">Hello</a></li>
                         <li><a href="#" class="dropdown-item">Hello</a></li>
                         <li><a href="#" class="dropdown-item">Hello</a></li>
+                        <hr>
+                        <li><a href="{{ route('categories') }}" class="dropdown-item">Add Categories</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Reports</a>
+                    <a href="{{ route('reports') }}" class="nav-link">Reports</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
