@@ -79,6 +79,13 @@ class FormController extends Controller
     }
 
 
+    public function editedCategory(Request $request, $id){
+        $category = Category::find($id);
+        $category->update($request->all());
+
+        Session::flash('success', 'Category Edited!');
+        return view('categories');
+    }
 
     
 }

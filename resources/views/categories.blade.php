@@ -43,10 +43,10 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
                     <td>
-                        <a href="#" class="btn btn-outline-warning me-5">Edit</a>
+                        <a href="{{ route('edit-category', $category->id ) }}" class="btn btn-outline-warning me-5" value="{{ $category->id }}">Edit</a>
 
                         <form class="d-inline">
-                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                            <button type="submit" class="btn btn-outline-danger" value="{{ $category->id }}">Delete</button>
                         </form>
                     </td>
                 </tr>

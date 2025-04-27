@@ -38,3 +38,7 @@ Route::get('/products', [PageController::class, 'products'])->name('products');
 Route::post('/add-products', [FormController::class, 'addProduct'])->name('add-product');
 
 Route::get('/reports', [PageController::class, 'reports'])->name('reports');
+
+Route::get('/edit-category/{id}', [PageController::class, 'editCategory'])->name('edit-category');
+
+Route::post('/edited-category/{id}', [FormController::class, 'editedCategory'])->name('edited-category');

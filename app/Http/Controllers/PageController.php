@@ -33,4 +33,10 @@ class PageController extends Controller
     public function reports(){
         return view('reports');
     }
+
+
+    public function editCategory(string $id){
+        $category = Category::find($id);
+        return view('features.editCategory', compact('category'));
+    }
 }
