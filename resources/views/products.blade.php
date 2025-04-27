@@ -7,27 +7,43 @@
                 <div class="card p-4 shadow-sm">
                     <div class="card-body">
                         <h2 class="car-title text-center">Add Products</h2>
-                        <form>
+                        @if (session('success'))
+                            <p style="color: green;">{{ session('success') }}</p>
+                        @endif
+                        <form method="POST" action="{{ route('add-product') }}">
+                            @csrf
                             <div class="mb-3">
                                 <label for="form-label">Product Name</label>
-                                <input type="text" class="form-control" placeholder="Enter the product name....">
+                                <input type="text" class="form-control" placeholder="Enter the product name...." name="name">
+                                @error('name')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="form-label">Product Description</label>
-                                <textarea class="form-control" placeholder="Describe the product...."></textarea> 
+                                <textarea class="form-control" placeholder="Describe the product...." name="description"></textarea> 
+                                @error('description')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="form-label">Product Price</label>
-                                <input type="number" class="form-control" placeholder="Enter the price....">   
+                                <input type="number" class="form-control" placeholder="Enter the price...." name="price">
+                                @error('price')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror   
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Product Category</label>
-                                <button class="btn btn-light border w-100 d-flex justify-content-between align-items-center dropdown-toggle form-control" type="button" data-bs-toggle="dropdown">
+                                <button class="btn btn-light border w-100 d-flex justify-content-between align-items-center dropdown-toggle form-control" type="button" data-bs-toggle="dropdown" name="category">
                                    Select Category
                                 </button>
+                                @error('category')
+                                    <p style="color: red;">{{ $message }}</p>
+                                @enderror
                                 <ul class="dropdown-menu" style="width: 80%">
                                     <li><a class="dropdown-item form-control">hello</a></li>
                                     <li><a class="dropdown-item form-control">hello</a></li>

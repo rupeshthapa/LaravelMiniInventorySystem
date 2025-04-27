@@ -27,8 +27,14 @@ Route::get('/dashboard', [PageController::class, 'dashboard'])->middleware(valid
 
 Route::get('/logout', [FormController::class, 'logout'])->name('logout');
 
+Route::get('/category/{catgeory}', function($category){
+    return $category;
+})->name('category');
+
 Route::get('/categories', [PageController::class, 'categories'])->name('categories');
+Route::post('/add-category', [FormController::class, 'addCategory'])->name('add-category');
 
 Route::get('/products', [PageController::class, 'products'])->name('products');
+Route::post('/add-products', [FormController::class, 'addProduct'])->name('add-product');
 
 Route::get('/reports', [PageController::class, 'reports'])->name('reports');
