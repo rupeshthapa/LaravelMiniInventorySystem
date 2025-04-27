@@ -38,17 +38,18 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Product Category</label>
-                                <button class="btn btn-light border w-100 d-flex justify-content-between align-items-center dropdown-toggle form-control" type="button" data-bs-toggle="dropdown" name="category">
-                                   Select Category
-                                </button>
-                                @error('category')
-                                    <p style="color: red;">{{ $message }}</p>
-                                @enderror
-                                <ul class="dropdown-menu" style="width: 80%">
-                                    <li><a class="dropdown-item form-control">hello</a></li>
-                                    <li><a class="dropdown-item form-control">hello</a></li>
-                                    <li><a class="dropdown-item form-control">hello</a></li>
-                                </ul>
+                                <select class="form-select w-100" name="category">
+                                    <option value="">--Select--</option>
+                                    @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">
+                                        {{ $category->name }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                
+                            @error('category')
+                            <p style="color: red;">{{ $message }}</p>
+                        @enderror
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button class="btn btn-primary w-75">Add</button>
@@ -60,4 +61,37 @@
             </div>
         </div>
     </div>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Categroy_ID</th>
+                <th>Created_AT</th>
+                <th>Updated_AT</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+
+            @foreach ($products as $product )
+                <tr>
+                    <td>{{$product->id}}</td>
+                    <td>{{$product->name}}</td>
+                    <td>{{$product->description}}</td>
+                    <td>{{$product->price}}</td>
+                    <td>{{$product->category_id}}</td>
+                    <td>{{$product->created_at}}</td>
+                    <td>{{$product->updated_at}}</td>
+                </tr>
+            @endforeach
+            <tr>
+            <td></td>
+            </tr>
+        </tbody>
+    </table>
 @endsection

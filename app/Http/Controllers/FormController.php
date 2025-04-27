@@ -7,6 +7,7 @@ use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\ProductFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,9 +65,20 @@ class FormController extends Controller
 
     public function addProduct(ProductFormRequest $productFormRequest){
         $productFormRequest->validated();
+
+        Product::create([
+            'name' => $productFormRequest['name'],
+            'description' => $productFormRequest['description'],
+            'price' => $productFormRequest['price'],
+            'category_id' => $productFormRequest['category']
+
+        ]);
         Session::flash('success', 'Product added!');
-        return view('products');
+        // return view('products');
+        return redirect()->back();
     }
+
+
 
     
 }

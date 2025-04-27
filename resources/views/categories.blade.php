@@ -27,4 +27,31 @@
                 </div>
             </div>
         </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach ($categories as $category)
+                <tr>
+                    <td>{{ $category->id }}</td>
+                    <td>{{ $category->name }}</td>
+                    <td>
+                        <a href="#" class="btn btn-outline-warning me-5">Edit</a>
+
+                        <form class="d-inline">
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                    
+                @endforeach
+            </tbody>
+        </table>
 @endsection
