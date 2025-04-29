@@ -26,6 +26,10 @@
                             <label for="form-label">Product Price</label>
                             <input type="number" class="form-control" placeholder="Enter the price...." value="{{ $product->price }}" name="price">  
                         </div>
+                        <div class="mb-3">
+                            <label for="form-label">Stock</label>
+                            <input type="number" class="form-control" placeholder="Enter the price...." value="{{ $product->stock }}" name="stock">  
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label">Product Category</label>

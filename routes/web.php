@@ -38,6 +38,7 @@ Route::middleware(['validate.user'])->group(function(){
         Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('edit');
         Route::post('/edited-category/{id}', [CategoryController::class, 'update'])->name('update');
         Route::post('/delete-category/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+        Route::get('/category/{category}', [CategoryController::class, 'show'])->name('show');
     });
     
 

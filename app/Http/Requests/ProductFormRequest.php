@@ -25,6 +25,7 @@ class ProductFormRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'stock' => 'required',
             'category' => 'required',
 
         ];
@@ -33,8 +34,9 @@ class ProductFormRequest extends FormRequest
     public function messages(){
        return [
             'name.required' => 'Product name is required.',
-            'description.required' => 'Description is required',
-            'price.required' => 'Price is required',
+            'description.required' => 'Description is required.',
+            'price.required' => 'Price is required.',
+            'stock.required' => 'Stock is required.',
             'category.required' => 'Category is required.'
         ];
     }

@@ -41,8 +41,9 @@
     
                             <form class="d-inline text-center" method="POST" action="{{ route('categories.destroy', $category->id) }}">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-danger" value="{{ $category->id }}">Delete</button>
+                                <button type="submit" class="btn btn-outline-danger me-2" value="{{ $category->id }}">Delete</button>
                             </form>
+                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-primary">Show All Products</a>
                         </td>
                     </tr>
                         

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryFormRequest;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Session;
 
@@ -47,7 +48,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        // 
+        $product = Product::find($id);
+        return view('productsAsCategory.productAsCategory', compact('product'));
     }
 
     /**
@@ -83,4 +85,5 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
 
     }
+
 }
