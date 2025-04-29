@@ -48,8 +48,10 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::find($id);
-        return view('productsAsCategory.productAsCategory', compact('product'));
+        
+        $products = Product::where('category_id', $id)->get();
+        $category = Category::find($id);
+        return view('productsAsCategory.productAsCategory', compact('products', 'category'));
     }
 
     /**
