@@ -10,6 +10,9 @@
                         @if (session('success'))
                             <p style="color: green;">{{ session('success') }}</p>
                         @endif
+                        @if (session('danger'))
+                            <p style="color: red;">{{ session('danger') }}</p>
+                        @endif
                         <form method="POST" action="{{ route('add-product') }}">
                             @csrf
                             <div class="mb-3">
@@ -71,8 +74,8 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Categroy_ID</th>
-                <th>Created_AT</th>
-                <th>Updated_AT</th>
+                <th>Categroy_Name</th>
+                <th>Actions</th>
             </tr>
             
         </thead>
@@ -85,8 +88,14 @@
                     <td>{{$product->description}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->category_id}}</td>
-                    <td>{{$product->created_at}}</td>
-                    <td>{{$product->updated_at}}</td>
+                    <td>{{$product->categories->name}}</td>
+                    <td>
+                        <a href="{{ route('edit-product', $product->id) }}" class="btn btn-outline-warning me-2" value="{{ $product->id }}">Edit</a>
+                        <form class="d-inline" method="POST" action="{{ route('deleted-product', $product->id) }}">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
             <tr>

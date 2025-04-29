@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -26,7 +27,10 @@ class PageController extends Controller
     }
 
     public function products(){
-        $products = Product::all();
+        $products = Product::with('categories')->get();
+        // $products = DB::table("products")->join('categories', 'categories.id', '=', 'products.category_id')
+        //             ->select("products.id as id","categories.id as cat_id","categories.name as cat_name")
+        //             ->get();
         return view('products', compact('products'));
     }
 
@@ -39,4 +43,20 @@ class PageController extends Controller
         $category = Category::find($id);
         return view('features.editCategory', compact('category'));
     }
+
+    
+    public function editProduct($id){
+        $product = Product::find($id);
+    return view('features.editProduct', compact('product'));
+    // $product = Product::find($id);
+    // $product->update($request->all());
+
+    // Session::flash('success', 'Product Edited!');
+    // return redirect()->route('products');
 }
+
+public function productAsCategory(){
+    return view('productsAsCategory.productAsCategory');
+}
+}
+

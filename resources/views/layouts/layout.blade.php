@@ -26,7 +26,7 @@
                     <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                     <ul class="dropdown-menu">
                         @foreach ($categories as $category)
-                            <li><a href="{{ route('category',[$category->name])  }}" class="dropdown-item">{{ $category->name }}</a></li>
+                            <li><a href="{{ route('productsAsCategory',[$category->name])  }}" class="dropdown-item">{{ $category->name }}</a></li>
                         @endforeach
                         <hr>
                         <li><a href="{{ route('categories') }}" class="dropdown-item">Add Categories</a></li>

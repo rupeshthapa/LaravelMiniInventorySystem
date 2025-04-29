@@ -87,5 +87,33 @@ class FormController extends Controller
         return view('categories');
     }
 
+    public function deletedCategory($id){
+        $category = Category::find($id);
+        $category->delete();
+
+        Session::flash('danger', 'Categroy Deleted!');
+        return view('categories');
+    }
+    
+    public function editedProduct(Request $request, $id){
+        $product = Product::find($id);
+        $product->update([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'category_id' => $request['category'] 
+        ]);
+
+        Session::flash('success', 'Product Edited!');
+        return redirect()->route('products');
+    }
+
+    public function deletedProduct($id){
+        $product = Product::find($id);
+        $product->delete();
+        
+        Session::flash('danger', 'Product Deleted!');
+        return redirect()->route('products');
+    }
     
 }
