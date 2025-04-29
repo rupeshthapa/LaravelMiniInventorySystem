@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryFormRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -11,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('categories.categories', compact('categories'));
     }
 
     /**
@@ -19,15 +23,22 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('categories.addCategory');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryFormRequest $categoryFormRequest)
     {
-        //
+        $categoryFormRequest->validated();
+        Category::create([
+            'name' => $categoryFormRequest['name']
+        ]);
+        Session::flash('success', 'New Category Added!');
+        return view('categories.categories');
+
     }
 
     /**
@@ -35,7 +46,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // 
     }
 
     /**
@@ -43,7 +54,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.editCategory', compact('category'));
     }
 
     /**
@@ -51,7 +63,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->update($request->all());
+
+        Session::flash('warning', 'Category Edited Succesfully!');
+        return view('categories.categories');
     }
 
     /**
@@ -59,6 +75,11 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $categroy = Category::find($id);
+        $categroy->delete();
+
+        Session::flash('danger', 'Category Deleted!');
+        return view('categories.categories');
+
     }
 }

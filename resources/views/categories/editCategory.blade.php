@@ -6,13 +6,13 @@
                 <div class="card p-4 shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title">Edit Category</h2>
+                        <form method="POST" action="{{ route('update' , $category->id) }}">
+                            @csrf
                         <div class="mb-3">
                             <label for="form-label">Edit</label>
-                            <input type="text" class="form-control" value="{{ $category->name }}">
+                            <input type="text" name="name" class="form-control" value="{{ $category->name }}">
                         </div>
                             <div class="d-flex justify-content-center">
-                                <form method="POST" action="{{ route('edited-category' , $category->id) }}">
-                                    @csrf
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>
                             </div>

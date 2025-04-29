@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,7 +12,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
+        // $products = Product::with('categories')->get();
+        // $products = DB::table("products")->join('categories', 'categories.id', '=', 'products.category_id')
+        //             ->select("products.id as id","categories.id as cat_id","categories.name as cat_name")
+        //             ->get();
+        return view('products.products', compact('products'));
     }
 
     /**

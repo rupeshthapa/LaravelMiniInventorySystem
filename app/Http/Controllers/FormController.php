@@ -54,14 +54,6 @@ class FormController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('rLogin')->with('danger', 'Logout Succesful!');
     }
-    public function addCategory(CategoryFormRequest $categoryFormRequest){
-        $categoryFormRequest->validated();
-        Category::create([
-            'name' => $categoryFormRequest['name']
-        ]);
-        Session::flash('success', 'Category added!');
-        return view('categories');
-    }
 
     public function addProduct(ProductFormRequest $productFormRequest){
         $productFormRequest->validated();
@@ -79,21 +71,9 @@ class FormController extends Controller
     }
 
 
-    public function editedCategory(Request $request, $id){
-        $category = Category::find($id);
-        $category->update($request->all());
+   
 
-        Session::flash('success', 'Category Edited!');
-        return view('categories');
-    }
-
-    public function deletedCategory($id){
-        $category = Category::find($id);
-        $category->delete();
-
-        Session::flash('danger', 'Categroy Deleted!');
-        return view('categories');
-    }
+  
     
     public function editedProduct(Request $request, $id){
         $product = Product::find($id);

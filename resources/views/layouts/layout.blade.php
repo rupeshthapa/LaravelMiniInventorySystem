@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mini Inventory System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 </head>
     <nav class="navbar navbar-expand-lg bg-body-teritary">
         <div class="container-fluid">
@@ -20,20 +22,20 @@
                     <a href="{{ route('dashboard') }}" class="nav-link" aria-current="page">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('products') }}" class="nav-link">Products</a>
+                    <a href="{{ route('index') }}" class="nav-link">Products</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                     <ul class="dropdown-menu">
                         @foreach ($categories as $category)
-                            <li><a href="{{ route('productsAsCategory',[$category->name])  }}" class="dropdown-item">{{ $category->name }}</a></li>
+                            {{-- <li><a href="{{ route('productsAsCategory',[$category->name])  }}" class="dropdown-item">{{ $category->name }}</a></li> --}}
                         @endforeach
                         <hr>
-                        <li><a href="{{ route('categories') }}" class="dropdown-item">Add Categories</a></li>
+                        {{-- <li><a href="{{ route('categories') }}" class="dropdown-item">Add Categories</a></li> --}}
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('reports') }}" class="nav-link">Reports</a>
+                    {{-- <a href="{{ route('reports') }}" class="nav-link">Reports</a> --}}
                 </li>
             </ul>
             <form class="d-flex" role="search">

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Middleware\validUser;
 use Illuminate\Support\Facades\Route;
 
@@ -29,18 +31,31 @@ Route::middleware(['validate.user'])->group(function(){
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
     Route::get('/logout', [FormController::class, 'logout'])->name('logout');
     
-    Route::get('/category/{catgeory}', [PageController::class, 'productAsCategory'])->name('productsAsCategory');
-    Route::get('/categories', [PageController::class, 'categories'])->name('categories');
-    Route::post('/add-category', [FormController::class, 'addCategory'])->name('add-category');
-    Route::get('/edit-category/{id}', [PageController::class, 'editCategory'])->name('edit-category');
-    Route::post('/edited-category/{id}', [FormController::class, 'editedCategory'])->name('edited-category');
-    Route::post('/deleted-category/{id}', [FormController::class, 'deletedCategory'])->name('deleted-category');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('index');
+    Route::get('/add-category', [CategoryController::class, 'create'])->name('create');
+    Route::post('/added-category', [CategoryController::class, 'store'])->name('store');
+    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('edit');
+    Route::post('/edited-category/{id}', [CategoryController::class, 'update'])->name('update');
+    Route::post('/delete-category/{id}', [CategoryController::class, 'destroy'])->name('destroy');
 
-    Route::get('/reports', [PageController::class, 'reports'])->name('reports');
+
+
+    Route::get('/products', [ProductController::class, 'index'])->name('index');
+
+    // Route::post('/delete-category/{id}', [CategoryController::class, 'delete'])->name('delete');
+
+
+    // Route::get('/category/{catgeory}', [PageController::class, 'productAsCategory'])->name('productsAsCategory');
+    // Route::post('/add-category', [FormController::class, 'addCategory'])->name('add-category');
+    // Route::get('/edit-category/{id}', [PageController::class, 'editCategory'])->name('edit-category');
+    // Route::post('/edited-category/{id}', [FormController::class, 'editedCategory'])->name('edited-category');
+    // Route::post('/deleted-category/{id}', [FormController::class, 'deletedCategory'])->name('deleted-category');
+
+    // Route::get('/reports', [PageController::class, 'reports'])->name('reports');
     
-    Route::get('/products', [PageController::class, 'products'])->name('products');
-    Route::post('/add-products', [FormController::class, 'addProduct'])->name('add-product');
-    Route::get('/edit-product/{id}', [PageController::class, 'editProduct'])->name('edit-product');
-    Route::post('/edited-product/{id}', [FormController::class, 'editedProduct'])->name('edited-product');
-    Route::post('deleted-product/{id}', [FormController::class, 'deletedProduct'])->name('deleted-product');
+    // Route::get('/products', [ProductController::class, 'index'])->name('products');
+    // Route::post('/add-products', [FormController::class, 'addProduct'])->name('add-product');
+    // Route::get('/edit-product/{id}', [PageController::class, 'editProduct'])->name('edit-product');
+    // Route::post('/edited-product/{id}', [FormController::class, 'editedProduct'])->name('edited-product');
+    // Route::post('deleted-product/{id}', [FormController::class, 'deletedProduct'])->name('deleted-product');
 });

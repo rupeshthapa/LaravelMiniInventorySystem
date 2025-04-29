@@ -21,17 +21,8 @@ class PageController extends Controller
         return view('dashboard');
     }
 
-    public function categories(){
-        $categories = Category::all();
-        return view('categories', compact('categories'));
-    }
-
     public function products(){
-        $products = Product::with('categories')->get();
-        // $products = DB::table("products")->join('categories', 'categories.id', '=', 'products.category_id')
-        //             ->select("products.id as id","categories.id as cat_id","categories.name as cat_name")
-        //             ->get();
-        return view('products', compact('products'));
+        
     }
 
     public function reports(){
