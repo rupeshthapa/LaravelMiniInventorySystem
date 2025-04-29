@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StockController;
 use App\Http\Middleware\validUser;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,8 @@ Route::middleware(['validate.user'])->group(function(){
         Route::post('/edited-product/{id}', [ProductController::class, 'update'])->name('update');
         Route::post('/delete-product/{id}', [ProductController::class, 'destroy'])->name('destroy');
     });
+
+    Route::get('/stock', [StockController::class, 'stock'])->name('stock');
 
     // Route::post('/delete-category/{id}', [CategoryController::class, 'delete'])->name('delete');
 
