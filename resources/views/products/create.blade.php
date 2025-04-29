@@ -1,5 +1,4 @@
 @extends('layouts.layout')
-
 @section('content')
     <div class="container my-5">
         <div class="row justify-content-center">
@@ -13,7 +12,7 @@
                         @if (session('danger'))
                             <p style="color: red;">{{ session('danger') }}</p>
                         @endif
-                        <form method="POST" action="{{ route('add-product') }}">
+                        <form method="POST" action="{{ route('products.store') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="form-label">Product Name</label>
@@ -64,43 +63,4 @@
             </div>
         </div>
     </div>
-
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Categroy_ID</th>
-                <th>Categroy_Name</th>
-                <th>Actions</th>
-            </tr>
-            
-        </thead>
-        <tbody>
-
-            @foreach ($products as $product )
-                <tr>
-                    <td>{{$product->id}}</td>
-                    <td>{{$product->name}}</td>
-                    <td>{{$product->description}}</td>
-                    <td>{{$product->price}}</td>
-                    <td>{{$product->category_id}}</td>
-                    <td>{{$product->categories->name}}</td>
-                    <td>
-                        <a href="{{ route('edit-product', $product->id) }}" class="btn btn-outline-warning me-2" value="{{ $product->id }}">Edit</a>
-                        <form class="d-inline" method="POST" action="{{ route('deleted-product', $product->id) }}">
-                            @csrf
-                            <button type="submit" class="btn btn-outline-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-            <tr>
-            <td></td>
-            </tr>
-        </tbody>
-    </table>
 @endsection

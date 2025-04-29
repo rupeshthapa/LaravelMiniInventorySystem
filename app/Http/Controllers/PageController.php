@@ -21,33 +21,16 @@ class PageController extends Controller
         return view('dashboard');
     }
 
-    public function products(){
-        
-    }
 
     public function reports(){
         return view('reports');
     }
 
-
-    public function editCategory(string $id){
-        $category = Category::find($id);
-        return view('features.editCategory', compact('category'));
-    }
-
     
-    public function editProduct($id){
-        $product = Product::find($id);
-    return view('features.editProduct', compact('product'));
-    // $product = Product::find($id);
-    // $product->update($request->all());
 
-    // Session::flash('success', 'Product Edited!');
-    // return redirect()->route('products');
-}
 
-public function productAsCategory(){
-    return view('productsAsCategory.productAsCategory');
-}
+    public function productAsCategory(){
+        return view('productsAsCategory.productAsCategory');
+    }
 }
 

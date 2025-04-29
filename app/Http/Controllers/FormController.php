@@ -55,25 +55,10 @@ class FormController extends Controller
         return redirect()->route('rLogin')->with('danger', 'Logout Succesful!');
     }
 
-    public function addProduct(ProductFormRequest $productFormRequest){
-        $productFormRequest->validated();
-
-        Product::create([
-            'name' => $productFormRequest['name'],
-            'description' => $productFormRequest['description'],
-            'price' => $productFormRequest['price'],
-            'category_id' => $productFormRequest['category']
-
-        ]);
-        Session::flash('success', 'Product added!');
-        // return view('products');
-        return redirect()->back();
-    }
+    p
 
 
    
-
-  
     
     public function editedProduct(Request $request, $id){
         $product = Product::find($id);

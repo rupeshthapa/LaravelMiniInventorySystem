@@ -12,7 +12,7 @@
             <p style="color: red;">{{ session('danger') }}</p>
         @endif
 <div class="container my-5 d-flex justify-content-start">
-    <form method="GET" action="{{ route('create') }}">
+    <form method="GET" action="{{ route('categories.create') }}">
         <button class="btn btn-primary d-flex align-items-center">
             <i class="bi bi-plus-circle me-2"></i> New Category
         </button>
@@ -37,9 +37,9 @@
                         <td class="text-center">{{ $category->id }}</td>
                         <td class="text-center">{{ $category->name }}</td>
                         <td class="text-center">
-                            <a href="{{ route('edit', $category->id ) }}" class="btn btn-outline-warning me-5" value="{{ $category->id }}">Edit</a>
+                            <a href="{{ route('categories.edit', $category->id ) }}" class="btn btn-outline-warning me-5" value="{{ $category->id }}">Edit</a>
     
-                            <form class="d-inline text-center" method="POST" action="{{ route('destroy', $category->id) }}">
+                            <form class="d-inline text-center" method="POST" action="{{ route('categories.destroy', $category->id) }}">
                                 @csrf
                                 <button type="submit" class="btn btn-outline-danger" value="{{ $category->id }}">Delete</button>
                             </form>

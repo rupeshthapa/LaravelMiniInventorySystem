@@ -30,17 +30,26 @@ Route::middleware(['validate.user'])->group(function(){
     
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
     Route::get('/logout', [FormController::class, 'logout'])->name('logout');
+
+    Route::name('categories.')->group(function(){
+        Route::get('/categories', [CategoryController::class, 'index'])->name('index');
+        Route::get('/add-category', [CategoryController::class, 'create'])->name('create');
+        Route::post('/added-category', [CategoryController::class, 'store'])->name('store');
+        Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('edit');
+        Route::post('/edited-category/{id}', [CategoryController::class, 'update'])->name('update');
+        Route::post('/delete-category/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
     
-    Route::get('/categories', [CategoryController::class, 'index'])->name('index');
-    Route::get('/add-category', [CategoryController::class, 'create'])->name('create');
-    Route::post('/added-category', [CategoryController::class, 'store'])->name('store');
-    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('edit');
-    Route::post('/edited-category/{id}', [CategoryController::class, 'update'])->name('update');
-    Route::post('/delete-category/{id}', [CategoryController::class, 'destroy'])->name('destroy');
 
 
-
-    Route::get('/products', [ProductController::class, 'index'])->name('index');
+    Route::name('products.')->group(function(){
+        Route::get('/products', [ProductController::class, 'index'])->name('index');
+        Route::get('/add-products', [ProductController::class, 'create'])->name('create');
+        Route::post('/added-products', [ProductController::class, 'store'])->name('store');
+        Route::get('/edit-product/{id}', [ProductController::class, 'edit'])->name('edit');
+        Route::post('/edited-product/{id}', [ProductController::class, 'update'])->name('update');
+        Route::post('/delete-product/{id}', [ProductController::class, 'destroy'])->name('destroy');
+    });
 
     // Route::post('/delete-category/{id}', [CategoryController::class, 'delete'])->name('delete');
 

@@ -22,17 +22,10 @@
                     <a href="{{ route('dashboard') }}" class="nav-link" aria-current="page">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('index') }}" class="nav-link">Products</a>
+                    <a href="{{ route('products.index') }}" class="nav-link">Products</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                    <ul class="dropdown-menu">
-                        @foreach ($categories as $category)
-                            {{-- <li><a href="{{ route('productsAsCategory',[$category->name])  }}" class="dropdown-item">{{ $category->name }}</a></li> --}}
-                        @endforeach
-                        <hr>
-                        {{-- <li><a href="{{ route('categories') }}" class="dropdown-item">Add Categories</a></li> --}}
-                    </ul>
+                <li class="nav-item">
+                    <a href="{{ route('categories.index') }}" class="nav-link">Categories</a>
                 </li>
                 <li class="nav-item">
                     {{-- <a href="{{ route('reports') }}" class="nav-link">Reports</a> --}}

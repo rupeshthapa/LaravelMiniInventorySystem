@@ -12,7 +12,7 @@
                             @if (session('danger'))
                                 <p style="color: red;">{{ session('danger') }}</p>
                             @endif
-                            <form method="POST" action="{{ route('store') }}">
+                            <form method="POST" action="{{ route('categories.store') }}">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="form-label">New Category</label>

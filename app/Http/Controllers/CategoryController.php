@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('categories.categories', compact('categories'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -24,7 +24,7 @@ class CategoryController extends Controller
     public function create()
     {
 
-        return view('categories.addCategory');
+        return view('categories.create');
     }
 
     /**
@@ -37,7 +37,8 @@ class CategoryController extends Controller
             'name' => $categoryFormRequest['name']
         ]);
         Session::flash('success', 'New Category Added!');
-        return view('categories.categories');
+        return redirect()->route('categories.index');
+        
 
     }
 
@@ -55,7 +56,7 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::find($id);
-        return view('categories.editCategory', compact('category'));
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -67,7 +68,7 @@ class CategoryController extends Controller
         $category->update($request->all());
 
         Session::flash('warning', 'Category Edited Succesfully!');
-        return view('categories.categories');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -79,7 +80,7 @@ class CategoryController extends Controller
         $categroy->delete();
 
         Session::flash('danger', 'Category Deleted!');
-        return view('categories.categories');
+        return redirect()->route('categories.index');
 
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductFormRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Session;
 
 class ProductController extends Controller
 {
@@ -16,7 +18,10 @@ class ProductController extends Controller
         // $products = DB::table("products")->join('categories', 'categories.id', '=', 'products.category_id')
         //             ->select("products.id as id","categories.id as cat_id","categories.name as cat_name")
         //             ->get();
-        return view('products.products', compact('products'));
+
+        // $products = Product::all();
+        $products = Product::with('categories')->get();
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -24,15 +29,24 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+       return view('products.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(ProductFormRequest $productFormRequest)
+    {   
+        $productFormRequest->validated();
+        Product::create([
+            'name' => $productFormRequest['name'],
+            'description' => $productFormRequest['description'],
+            'price' => $productFormRequest['price'],
+            'category_id' => $productFormRequest['category']
+
+        ]);
+        Session::flash('success', 'New Product Added!');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -48,7 +62,8 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::find($id);
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -56,7 +71,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $products = Product::find($id);
+        $products->update([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'category_id' => $request['category']
+        ]);
+        Session::flash('warning', 'Product Edited Successfully!');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -64,6 +87,11 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        
+        Session::flash('danger', 'Product Deleted!');
+        return redirect()->route('products.index');
     }
+
 }

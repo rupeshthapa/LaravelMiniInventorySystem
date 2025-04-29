@@ -6,7 +6,7 @@
                 <div class="card p-4 shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title">Edit Category</h2>
-                        <form method="POST" action="{{ route('update' , $category->id) }}">
+                        <form method="POST" action="{{ route('categories.update' , $category->id) }}">
                             @csrf
                         <div class="mb-3">
                             <label for="form-label">Edit</label>

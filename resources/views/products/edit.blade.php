@@ -10,7 +10,7 @@
                     @if (session('success'))
                         <p style="color: green;">{{ session('success') }}</p>
                     @endif
-                    <form method="POST" action="{{ route('edited-product', $product->id) }}">
+                    <form method="POST" action="{{ route('products.update', $product->id) }}">
                         @csrf
                         <div class="mb-3">
                             <label for="form-label">Product Name</label>
