@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\FormController;
+use App\Http\Controllers\auth\LoginFormController;
+use App\Http\Controllers\auth\RegisterFormController;
+use App\Http\Controllers\auth\LogoutController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -18,18 +21,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'rLogin'])->name('rLogin');
-Route::post('/login', [FormController::class, 'login'])->name('login');
+Route::get('/', [LoginFormController::class, 'rLogin'])->name('rLogin');
+Route::post('/login', [LoginFormController::class, 'login'])->name('login');
 
 
-Route::get('/register', [PageController::class, 'rRegister'])->name('rRegister');
-Route::post('/register', [FormController::class, 'register'])->name('register');
+Route::get('/register', [RegisterFormController::class, 'rRegister'])->name('rRegister');
+Route::post('/register', [RegisterFormController::class, 'register'])->name('register');
 
 Route::middleware(['validate.user'])->group(function(){
     
     
-    Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-    Route::get('/logout', [FormController::class, 'logout'])->name('logout');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
     Route::name('categories.')->group(function(){
         Route::get('/categories', [CategoryController::class, 'index'])->name('index');
