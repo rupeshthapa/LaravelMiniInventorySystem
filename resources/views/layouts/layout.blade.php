@@ -85,8 +85,8 @@
                     <input class="form-control me-2" style="width: 500px" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-dark me-2" type="submit">Search</button>
                   </form>
-                  <a href="{{ route('logout') }}" class="btn btn-outline-danger">Logout</a>
-                <img src="your-image.jpg" alt="Profile" width="40" height="40" class="rounded-circle">
+                  <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
+                
               </div>
               
 

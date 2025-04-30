@@ -43,7 +43,7 @@
                                 @csrf
                                 <button type="submit" class="btn btn-outline-danger me-2" value="{{ $category->id }}">Delete</button>
                             </form>
-                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-primary">Show All Products</a>
+                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-outline-primary">Show All Products</a>
                         </td>
                     </tr>
                         
