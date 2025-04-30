@@ -5,7 +5,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card p-4 shadow-sm">
                     <div class="card-body">
-                        <h2 class="car-title text-center">Add Products</h2>
+                        <h2 class="card-title text-center">Add Products</h2>
                         @if (session('success'))
                             <p style="color: green;">{{ session('success') }}</p>
                         @endif
