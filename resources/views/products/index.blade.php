@@ -59,8 +59,8 @@
                         
                         <a class="btn btn-outline-success me-2" href="{{ route('stocks.create', ["product_id" => $product->id]) }}">Add Stock</a>
 
-                        <a class="btn btn-outline-info me-2" href="{{ route('stocks.index') }}">View Stock</a>
-                        
+                        <a class="btn btn-outline-info me-2" href="{{ route('stocks.index', $product->id) }}">View Stock</a>
+
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#showDetails-{{ $product->id }}">Show</button>
                         <div class="modal fade" id="showDetails-{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">

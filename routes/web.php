@@ -57,7 +57,7 @@ Route::middleware(['validate.user'])->group(function(){
     });
 
     Route::name('stocks.')->group( function(){
-        Route::get('/stocks', [StockController::class, 'index'])->name('index');
+        Route::get('/stocks/{id}', [StockController::class, 'index'])->name('index');
         Route::get('/add-stock/{product_id}', [StockController::class, 'create'])->name('create');
         Route::post('/added-stock', [StockController::class, 'store'])->name('store');
     });

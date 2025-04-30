@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StockFormRequest;
+use App\Models\Product;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Session;
@@ -12,9 +13,10 @@ class StockController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        return view('stocks.index');
+        $product = Product::find($id);
+        return view('stocks.index', compact('product'));
     }
 
     /**
