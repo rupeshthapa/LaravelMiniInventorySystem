@@ -37,20 +37,27 @@
         <tbody>
 
             @foreach ($products as $product )
+            @php
+                // dd($product->stock_sum_stock);
+            @endphp
+           
                 <tr>
                     <td>{{$product->id}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->stock}}</td>
+                    <td>{{$product->stock_sum_stock ?? '0'}}</td>
                     <td>{{$product->category_id}}</td>
                     <td>{{$product->categories->name}}</td>
+                    
                     <td>
                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-outline-warning me-2" value="{{ $product->id }}">Edit</a>
                         <form class="d-inline" method="POST" action="{{ route('products.destroy', $product->id) }}">
                             @csrf
                             <button type="submit" class="btn btn-outline-danger me-2">Delete</button>
                         </form>
+                        
+                        <a class="btn btn-outline-success" href="{{ route('stocks.create', ["product_id" => $product->id]) }}">Add Stock</a>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showDetails-{{ $product->id }}">Show</button>
                         <div class="modal fade" id="showDetails-{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -66,7 +73,7 @@
                                     <p class="lead text-bold">Name: {{$product->name}}</p>
                                     <p class="lead text-bold">Description: {{$product->description}}</p>
                                     <p class="lead text-bold">Price: Rs. {{$product->price}}</p>
-                                    <p class="lead text-bold">Stock: {{$product->stock}} Remaining</p>
+                                    <p class="lead text-bold">Stock: {{$product->stock_sum_stock}} Remaining</p>
                                     <p class="lead text-bold">Category ID: {{$product->category_id}}</p>
                                     <p class="lead text-bold">Category Name: {{$product->categories->name}}</p>
                                 </div>

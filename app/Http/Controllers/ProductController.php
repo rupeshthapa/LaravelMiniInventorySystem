@@ -20,8 +20,9 @@ class ProductController extends Controller
         //             ->get();
 
         // $products = Product::all();
-        $products = Product::with('categories')->get();
+        $products = Product::with('categories')->withSum('stock', 'stock')->get();        
         return view('products.index', compact('products'));
+
     }
 
     /**
@@ -42,7 +43,6 @@ class ProductController extends Controller
             'name' => $productFormRequest['name'],
             'description' => $productFormRequest['description'],
             'price' => $productFormRequest['price'],
-            'stock' => $productFormRequest['stock'],
             'category_id' => $productFormRequest['category']
 
         ]);
@@ -77,7 +77,6 @@ class ProductController extends Controller
             'name' => $request['name'],
             'description' => $request['description'],
             'price' => $request['price'],
-            'stock' => $request['stock'],
             'category_id' => $request['category']
         ]);
         Session::flash('warning', 'Product Edited Successfully!');

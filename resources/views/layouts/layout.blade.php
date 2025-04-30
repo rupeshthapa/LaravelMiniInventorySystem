@@ -27,9 +27,6 @@
                 <li class="nav-item">
                     <a href="{{ route('categories.index') }}" class="nav-link">Categories</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('stock') }}" class="nav-link">Stock</a>
-                </li>
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

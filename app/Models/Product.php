@@ -18,5 +18,9 @@ class Product extends Model
     //     return $this->hasOne(Category::class, 'category_id');
     // }
 
+    public function stock(){
+        return $this->hasMany(Stock::class, 'product_id');
+    }
+
 
 }

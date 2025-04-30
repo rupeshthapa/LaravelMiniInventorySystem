@@ -56,7 +56,11 @@ Route::middleware(['validate.user'])->group(function(){
         Route::post('/delete-product/{id}', [ProductController::class, 'destroy'])->name('destroy');
     });
 
-    Route::get('/stock', [StockController::class, 'stock'])->name('stock');
+    Route::name('stocks.')->group( function(){
+        Route::get('/add-stock/{product_id}', [StockController::class, 'create'])->name('create');
+        Route::post('/added-stock', [StockController::class, 'store'])->name('store');
+    });
+  
 
     // Route::post('/delete-category/{id}', [CategoryController::class, 'delete'])->name('delete');
 
