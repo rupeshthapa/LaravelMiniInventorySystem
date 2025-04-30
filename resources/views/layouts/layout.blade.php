@@ -81,8 +81,8 @@
         <div class="flex-grow-1 d-flex flex-column">
             <div class="navbar-custom p-3 d-flex justify-content-between align-items-center">
                 <h4 class="mb-0">Navbar</h4>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" style="width: 500px" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" role="search" method="GET" action="{{ route('products.search') }}">
+                    <input class="form-control me-2" style="width: 500px" type="search" placeholder="Search" aria-label="Search" name="query">
                     <button class="btn btn-dark me-2" type="submit">Search</button>
                   </form>
                   <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>

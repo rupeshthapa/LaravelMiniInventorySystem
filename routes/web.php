@@ -54,6 +54,7 @@ Route::middleware(['validate.user'])->group(function(){
         Route::get('/edit-product/{id}', [ProductController::class, 'edit'])->name('edit');
         Route::post('/edited-product/{id}', [ProductController::class, 'update'])->name('update');
         Route::post('/delete-product/{id}', [ProductController::class, 'destroy'])->name('destroy');
+        Route::get('/products/search', [ProductController::class, 'search'])->name('search');
     });
 
     Route::name('stocks.')->group( function(){

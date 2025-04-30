@@ -1,6 +1,10 @@
 @extends('layouts.layout')
 
 @section('content')
+<h2>Search Results</h2>
+
+
+
                             @if (session('success'))
                             <p style="color: green;">{{ session('success') }}</p>
                         @endif 
