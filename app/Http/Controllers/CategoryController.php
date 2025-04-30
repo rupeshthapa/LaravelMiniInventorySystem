@@ -49,7 +49,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         
-        $products = Product::where('category_id', $id)->get();
+        $products = Product::where('category_id', $id)->withSum('stock', 'stock')->get();
         $category = Category::find($id);
         return view('productsAsCategory.productAsCategory', compact('products', 'category'));
     }

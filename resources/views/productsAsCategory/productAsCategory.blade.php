@@ -11,7 +11,7 @@
                             <p>Name: {{ $product->name }}</p>
                             <p>Description: {{ $product->description }}</p>
                             <p>Price: Rs. {{ $product->price }}</p>
-                            <p>Stock: {{ $product->stock }} Remaining</p>
+                            <p>Stock: {{ $product->stock_sum_stock ?? '0' }} Remaining</p>
                             <p>Category Name: {{ $product->categories->name }}</p>
                         </div>
                     </div>
