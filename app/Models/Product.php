@@ -21,6 +21,4 @@ class Product extends Model
     public function stock(){
         return $this->hasMany(Stock::class, 'product_id');
     }
-
-
 }

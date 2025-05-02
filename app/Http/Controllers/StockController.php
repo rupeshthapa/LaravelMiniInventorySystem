@@ -76,4 +76,42 @@ class StockController extends Controller
     {
         //
     }
+
+
+    public function removeStock(Request $request, $product_id)
+    {
+        $request->validate([
+            'removeStock' => 'required|integer|min:1',
+        ]);
+
+        $stocks = Stock::where("product_id",$product_id)->get();
+        $toRemove = $request->removeStock;
+        $totalAvailable = $stocks->sum("stock");
+
+        if ($toRemove > $totalAvailable) {
+            return back()->with('danger', 'Removed maximum available stock. You requested more than available.');
+        }
+
+        $remaining = $toRemove;
+
+        foreach ($stocks as $stock) {
+            if ($remaining <= 0) break;
+    
+            if ($stock->stock > 0) {
+                if ($stock->stock >= $remaining) {
+                    $stock->stock -= $remaining;
+                    $remaining = 0;
+                } else {
+                    $remaining -= $stock->stock;
+                    $stock->stock = 0;
+                }
+    
+                $stock->save();
+            }
+        }
+
+        return back()->with('success', 'Stock removed successfully.');
+   
+    }
+
 }

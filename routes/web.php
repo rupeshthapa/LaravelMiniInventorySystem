@@ -55,12 +55,14 @@ Route::middleware(['validate.user'])->group(function(){
         Route::post('/edited-product/{id}', [ProductController::class, 'update'])->name('update');
         Route::post('/delete-product/{id}', [ProductController::class, 'destroy'])->name('destroy');
         Route::get('/products/search', [ProductController::class, 'search'])->name('search');
+        
     });
 
     Route::name('stocks.')->group( function(){
         Route::get('/stocks/{id}', [StockController::class, 'index'])->name('index');
         Route::get('/add-stock/{product_id}', [StockController::class, 'create'])->name('create');
         Route::post('/added-stock', [StockController::class, 'store'])->name('store');
+        Route::post('/remove-stock/{product_id}', [StockController::class, 'removeStock'])->name('removeStock');
     });
   
 
