@@ -130,6 +130,9 @@ class ProductController extends Controller
 
     $products = Product::where('name', 'LIKE', "%{$query}%")
                        ->orWhere('description', 'LIKE', "%{$query}%")
+                       ->orWhereHas('categories', function($q) use($query){
+                        $q->where('name', 'LIKE', "%{$query}%");
+                       })
                        ->get();
 
     return view('products.index', compact('products'));

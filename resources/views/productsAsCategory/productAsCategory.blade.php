@@ -7,6 +7,7 @@
         <div class="container my-5">
                     <div class="card p-4 shadow-sm">
                         <div class="card-body">
+                            <img src="{{ asset('storage/' . $product->image) }}" width="50%">
                             <p>ID: {{ $product->id }}</p>
                             <p>Name: {{ $product->name }}</p>
                             <p>Description: {{ $product->description }}</p>
