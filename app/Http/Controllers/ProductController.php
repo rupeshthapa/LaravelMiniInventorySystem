@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductFormRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+// use Illuminate\Image\Facades\Image;
+use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\ImageManager;
 use Session;
 use Storage;
 
@@ -40,12 +43,21 @@ class ProductController extends Controller
     public function store(ProductFormRequest $productFormRequest)
     {   
         $productFormRequest->validated();
-        $imagePath = null;
+        // $imagePath = null;
+
+
+
+        // $image = Image::read($productFormRequest->file('image'));
+        // $image->resize(100,100);
+        // $image->save($destinationPathThumbnail.$imageName);
+
+
 
         if($productFormRequest->hasFile('image')){
             $image = $productFormRequest->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/images', $imageName);
+            $resizedImage = Image::read($image)->resize(100,100)->encode();
+            Storage::put('public/images/' . $imageName, $resizedImage);
             $imagePath = 'images/' . $imageName;
         }
 
