@@ -113,6 +113,9 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::find($id);
+        if($product->image && Storage::exists('public/' . $product->image)){
+            Storage::delete(('public/' . $product->image));
+        }
         $product->delete();
         
         Session::flash('danger', 'Product Deleted!');
