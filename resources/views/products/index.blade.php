@@ -76,6 +76,7 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="User Image" width="100%">
                                     <p class="lead text-bold">ID: {{$product->id}}</p>
                                     <p class="lead text-bold">Name: {{$product->name}}</p>
                                     <p class="lead text-bold">Description: {{$product->description}}</p>

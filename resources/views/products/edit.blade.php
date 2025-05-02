@@ -10,7 +10,7 @@
                     @if (session('success'))
                         <p style="color: green;">{{ session('success') }}</p>
                     @endif
-                    <form method="POST" action="{{ route('products.update', $product->id) }}">
+                    <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="form-label">Product Name</label>
@@ -36,6 +36,15 @@
                                 </option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <img src="{{ asset('storage/' . $product->image) }}" width="100%" alt="Current Product Image">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="form-label">Change Image</label>
+                            <input type="file" name="image" value="{{ $product->image }}" class="form-control">
+                            
                         </div>
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-primary w-75">Update</button>

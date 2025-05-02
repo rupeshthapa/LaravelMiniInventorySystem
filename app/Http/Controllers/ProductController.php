@@ -6,6 +6,7 @@ use App\Http\Requests\ProductFormRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Session;
+use Storage;
 
 class ProductController extends Controller
 {
@@ -84,12 +85,23 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $products = Product::find($id);
+
+        if($request->hasFile('image')){
+            if($products->image && Storage::exists('public/' . $products->image)){
+                Storage::delete('public/'. $products->image);
+            }
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $newImage = $products->image = 'images/' . $imageName;
+        }
+
         $products->update([
             'name' => $request['name'],
             'description' => $request['description'],
             'price' => $request['price'],
             'category_id' => $request['category'],
-            'image' => $request['image']
+            'image' => $newImage
         ]);
         Session::flash('warning', 'Product Edited Successfully!');
         return redirect()->route('products.index');
