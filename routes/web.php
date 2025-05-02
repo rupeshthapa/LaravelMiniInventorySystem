@@ -63,23 +63,6 @@ Route::middleware(['validate.user'])->group(function(){
         Route::get('/add-stock/{product_id}', [StockController::class, 'create'])->name('create');
         Route::post('/added-stock', [StockController::class, 'store'])->name('store');
         Route::post('/remove-stock/{product_id}', [StockController::class, 'removeStock'])->name('removeStock');
-    });
-  
+    });    
 
-    // Route::post('/delete-category/{id}', [CategoryController::class, 'delete'])->name('delete');
-
-
-    // Route::get('/category/{catgeory}', [PageController::class, 'productAsCategory'])->name('productsAsCategory');
-    // Route::post('/add-category', [FormController::class, 'addCategory'])->name('add-category');
-    // Route::get('/edit-category/{id}', [PageController::class, 'editCategory'])->name('edit-category');
-    // Route::post('/edited-category/{id}', [FormController::class, 'editedCategory'])->name('edited-category');
-    // Route::post('/deleted-category/{id}', [FormController::class, 'deletedCategory'])->name('deleted-category');
-
-    // Route::get('/reports', [PageController::class, 'reports'])->name('reports');
-    
-    // Route::get('/products', [ProductController::class, 'index'])->name('products');
-    // Route::post('/add-products', [FormController::class, 'addProduct'])->name('add-product');
-    // Route::get('/edit-product/{id}', [PageController::class, 'editProduct'])->name('edit-product');
-    // Route::post('/edited-product/{id}', [FormController::class, 'editedProduct'])->name('edited-product');
-    // Route::post('deleted-product/{id}', [FormController::class, 'deletedProduct'])->name('deleted-product');
 });
