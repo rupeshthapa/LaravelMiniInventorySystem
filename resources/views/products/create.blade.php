@@ -12,7 +12,7 @@
                         @if (session('danger'))
                             <p style="color: red;">{{ session('danger') }}</p>
                         @endif
-                        <form method="POST" action="{{ route('products.store') }}">
+                        <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="form-label">Product Name</label>
@@ -51,6 +51,10 @@
                             @error('category')
                             <p style="color: red;">{{ $message }}</p>
                         @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="form-lable">Choose a photo:</label>
+                                <input type="file" class="form-control" name="image">
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button class="btn btn-primary w-75">Add</button>

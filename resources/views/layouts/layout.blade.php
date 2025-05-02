@@ -63,8 +63,12 @@
         }
         .navbar-custom{
             background-color: #6c757d;
-      color: white;
+            color: white;
         }
+        
+    .custom-gap{
+        margin-top: 35px;
+    }
     </style>
 </head>
 <body>
@@ -72,7 +76,7 @@
     <div class="d-flex">
         <div class="sidebar p-3">
             <h5>Logo</h5>
-            <ul class="nav flex-column">
+            <ul class="nav flex-column custom-gap">
                 <li class="nav-item"><a class="nav-link text-white hover-bg-dark" href="{{ route('dashboard') }}"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link text-white hover-bg-dark" href="{{ route('products.index') }}"><i class="bi bi-box-seam me-2"></i>Products</a></li>
                 <li class="nav-item"><a class="nav-link text-white hover-bg-dark" href="{{ route('categories.index') }}"><i class="bi bi-layers me-2"></i>Categories</a></li>

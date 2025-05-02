@@ -39,13 +39,24 @@ class ProductController extends Controller
     public function store(ProductFormRequest $productFormRequest)
     {   
         $productFormRequest->validated();
+        $imagePath = null;
+
+        if($productFormRequest->hasFile('image')){
+            $image = $productFormRequest->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $imagePath = 'images/' . $imageName;
+        }
+
         Product::create([
             'name' => $productFormRequest['name'],
             'description' => $productFormRequest['description'],
             'price' => $productFormRequest['price'],
-            'category_id' => $productFormRequest['category']
+            'category_id' => $productFormRequest['category'],
+            'image' => $imagePath
 
         ]);
+        
         Session::flash('success', 'New Product Added!');
         return redirect()->route('products.index');
     }
@@ -77,7 +88,8 @@ class ProductController extends Controller
             'name' => $request['name'],
             'description' => $request['description'],
             'price' => $request['price'],
-            'category_id' => $request['category']
+            'category_id' => $request['category'],
+            'image' => $request['image']
         ]);
         Session::flash('warning', 'Product Edited Successfully!');
         return redirect()->route('products.index');
@@ -99,6 +111,7 @@ class ProductController extends Controller
     public function search(Request $request)
 {
     $query = $request->input('query');
+    
 
     $products = Product::where('name', 'LIKE', "%{$query}%")
                        ->orWhere('description', 'LIKE', "%{$query}%")

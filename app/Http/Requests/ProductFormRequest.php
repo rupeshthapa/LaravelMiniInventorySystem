@@ -26,6 +26,7 @@ class ProductFormRequest extends FormRequest
             'description' => 'required',
             'price' => 'required',
             'category' => 'required',
+            'image' => 'image'
 
         ];
     }
